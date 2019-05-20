@@ -1,0 +1,164 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.9
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 01, 2018 at 06:02 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `project`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book`
+--
+CREATE DATABASE 'project';
+CREATE TABLE `book` (
+  `Title` varchar(200) NOT NULL,
+  `Author` varchar(30) NOT NULL,
+  `ISBN_no` char(13) NOT NULL,
+  `Publisher` varchar(50) NOT NULL,
+  `Year` char(4) NOT NULL,
+  `Price` decimal(5,2) NOT NULL,
+  `Stock` int(4) NOT NULL,
+  `Genre` varchar(40) NOT NULL,
+  `Description` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `book`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `Fname` varchar(20) NOT NULL,
+  `Lname` varchar(20) NOT NULL,
+  `Email` varchar(80) NOT NULL,
+  `Username` varchar(40) NOT NULL,
+  `Password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery`
+--
+
+CREATE TABLE `delivery` (
+  `Fname` varchar(20) NOT NULL,
+  `Lname` varchar(20) NOT NULL,
+  `Address` varchar(100) NOT NULL,
+  `State` char(2) NOT NULL,
+  `Zip` char(5) NOT NULL,
+  `Del_type` set('Ground','Express') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `delivery`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `manager`
+--
+
+CREATE TABLE `manager` (
+  `Manager_id` char(8) NOT NULL,
+  `Password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `manager`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `Fname` varchar(20) NOT NULL,
+  `Lname` varchar(20) NOT NULL,
+  `Bill_address` varchar(100) NOT NULL,
+  `State` char(2) NOT NULL,
+  `Zip` char(5) NOT NULL,
+  `Card_no` char(16) NOT NULL,
+  `Exp_date` date NOT NULL,
+  `Sec_key` char(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `payment`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase`
+--
+
+CREATE TABLE `purchase` (
+  `User` varchar(40) NOT NULL,
+  `Id_no` char(10) NOT NULL,
+  `Track_no` char(10) NOT NULL,
+  `Exp_arr_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `book`
+--
+ALTER TABLE `book`
+  ADD PRIMARY KEY (`ISBN_no`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`Username`);
+
+--
+-- Indexes for table `manager`
+--
+ALTER TABLE `manager`
+  ADD PRIMARY KEY (`Manager_id`);
+
+--
+-- Indexes for table `purchase`
+--
+ALTER TABLE `purchase`
+  ADD PRIMARY KEY (`Id_no`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
